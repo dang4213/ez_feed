@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import Plot from 'react-plotly.js';
 import './App.css';
 import LineChart from './LineChart';
+
+//cd to Documents/ez-feed/ez-feed-app
+//run with: npm start
+
+
 
 class App extends Component {
   createFakeData(){
@@ -18,8 +24,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="header">react svg line chart [part 1]</div>
-        <LineChart data={this.createFakeData()} />
+        <div className="header">Ez-Feed</div>
+
+        <Plot
+          data={[
+            {
+              x: [9, 17],
+              y: [52.3, 70.9],
+              type: 'scatter',
+              mode: 'lines+points',
+              marker: {color: 'red'},
+            },
+            {type: 'bar', x: [9, 17], y: [52.3, 70.9]},
+          ]}
+          layout={
+            {
+              width: 720,
+              height: 540,
+              title: 'Daily Cat Feeding Times and Amount',
+              xaxis: { title: "Time" },
+              yaxis: { title: "Amount Eaten (g)" }
+            }
+          }
+        />
+
+      {/* <LineChart data={this.createFakeData()} /> */}
       </div>
     );
   }
